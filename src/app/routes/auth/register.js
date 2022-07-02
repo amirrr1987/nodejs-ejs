@@ -1,15 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/register', (req, res) => {
-    res.render('auth/register');
-});
-router.post('/register', (req, res) => {
-    // res.render('auth/register');
-    console.log(req.body);
-    res.json(req.body);
-    // res.json({name: 'amir'})
-    // res.redirect('/');
-});
+const registerController = require('../../http/controllers/auth/registerController');
+
+router.get('/register', registerController.getIndex);
+router.post('/register', registerController.postIndex);
 
 module.exports = router
