@@ -16,11 +16,11 @@ module.exports = class Application {
         });
     };
     setConfig() {
-        // app.use(express.static(__dirname + 'public'));
+        app.use(express.static(__dirname + '/public'));
         app.set('view engine', 'ejs');
         app.set('views', path.join(__dirname, 'resource/views'));
         app.use(expressLayouts);
-        // app.set('layout' , './theme/index')
+        app.set('layout' , 'theme')
         app.set('layout extractStyles', true);
         app.set('layout extractScripts', true);
     }
