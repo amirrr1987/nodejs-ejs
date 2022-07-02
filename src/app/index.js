@@ -3,6 +3,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 
 module.exports = class Application {
@@ -33,19 +34,10 @@ module.exports = class Application {
         app.set('layout' , 'theme')
         app.set('layout extractStyles', true);
         app.set('layout extractScripts', true);
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: false }));
     }
     setRoutes() {
-        app.get('/', (req, res) => {
-            res.render('index');
-        });
-        app.get('/about', (req, res) => {
-            res.render('about');
-        });
-        app.get('/gallery', (req, res) => {
-            res.render('gallery');
-        });
-        app.get('/contact', (req, res) => {
-            res.render('contact');
-        });
+        app.use(require('./routes'));
     }
 };
